@@ -12,6 +12,8 @@ License:
 
 VIX250AH-DRIVE
 
+[VIX250AH Manual](https://www.parkermotion.com/manuals/Digiplan/ViX-AH_UG_8-03.pdf)
+
 ### Wiring
 
 #### RS232 Cables
@@ -138,6 +140,67 @@ At the end:
 1SV
 1Z
 ```
+
+### Tune VIX Controller Gains
+
+aGAINS(GF,GI,GP,GV,FT)
+
+Example:
+
+```shell
+1GAINS(20.00,10.00,100.00,20.00,0)
+1SV
+1Z
+```
+
+#### GF: Gain Feedforward
+
+The opposing action of proportional and velocity gains result in a position
+error which depends on speed. This is called ‘following error’. Feedforward gain
+can be used to offset the following error and improve tracking accuracy. This is
+important in contouring applications.
+
+0 to 1023 default = 5
+
+#### GI: Gain Integral
+
+Proportional action may be insufficient to overcome static position errors
+caused by gravitational load effects. Integral action accumulates a steady state
+error until sufficient torque is produced to move the load. It improves overall
+positioning accuracy but may produce low frequency oscillation around the
+commanded position.
+
+0 to 1023 default depends on motor type
+
+#### GP: Gain Proportional
+
+Proportional gain determines the amount of torque produced in response to a
+given position error. It sets the stiffness of the system and affects the
+following error. A high proportional gain gives a stiff, responsive system but
+results in overshoot and oscillation that require damping.
+
+0 to 1023 default depends on motor type
+
+#### GV: Gain Velocity
+
+Velocity feedback is a signal which increases with shaft speed. It acts in a
+negative sense opposing the proportional action and helping to stabilise the
+motion. The damping action of velocity feedback allows a higher proportional
+gain to be used.
+
+0 to 1023 default = 5
+
+#### FT: Filter time constant
+
+Fast positioning systems need high proportional and velocity gains. By limiting
+the bandwidth, the digital filter prevents a high gain system from becoming too
+lively. The filter also serves to average the effects of the digital control
+loop, reducing the jitter at standstill and the audible noise. The value of FT
+should be kept as low as possible. The arbitrary units used to set the value of
+FT cannot be directly related to any time value.
+
+0 to 255 used to filter high gain systems, measured in arbitrary units,
+default = 0
 
 ### step_dir_controller
 

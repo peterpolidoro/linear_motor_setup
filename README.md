@@ -130,9 +130,19 @@ Data bits: 8
 Stop bits: 1
 Parity: None
 
+CR,LF line end
+
+#### Test Cutecom Connection
+
+```shell
+1STATUS
+```
+
+#### Enter Vix Controller Settings
+
 Open <./settings.txt>
 
-Enter each line in Input field and press Enter.
+Enter each line in cutecom Input field and press Enter.
 
 At the end:
 
@@ -141,14 +151,24 @@ At the end:
 1Z
 ```
 
+Repeat for each linear motor.
+
 ### Tune VIX Controller Gains
 
 aGAINS(GF,GI,GP,GV,FT)
 
-Example:
+Example with low gains:
 
 ```shell
-1GAINS(20.00,10.00,100.00,20.00,0)
+1GAINS(20,10,100,20,0)
+1SV
+1Z
+```
+
+Example with high gains:
+
+```shell
+1GAINS(20,10,400,80,0)
 1SV
 1Z
 ```

@@ -168,7 +168,7 @@ Example with low gains:
 Example with high gains:
 
 ```shell
-1GAINS(20,10,400,80,0)
+1GAINS(20,10,600,120,0)
 1SV
 1Z
 ```
